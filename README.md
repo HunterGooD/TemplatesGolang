@@ -4,11 +4,11 @@
 
 ## Go modules 
 
-Для изменения имени модуля для go есть скрипты [tools](tools/). Скрипты сделаны если текстовый редактор не поддерживает возможности самостоятельно заменить имена и импорты.
+Для изменения имени модуля для go есть скрипты [scripts](scripts/). Скрипты сделаны если текстовый редактор не поддерживает возможности самостоятельно заменить имена и импорты.
 ```bash
-$ ./tools/generate.sh <new name module>
+$ ./scripts/generate.sh <new name module>
 ```
 Или же 
 ```bash
-$ python ./tools/generate.py <new name module>
+$ python ./scripts/generate.py <new name module>
 ```
