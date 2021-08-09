@@ -15,7 +15,7 @@ function scan {
 # $2 - oldString 
 # $3 - newString
 function replaceInFile {
-    sed -i "s/$2/$3/" $1
+    sed -i "s!$2!$3!" $1
 }
 
 if [ -z "$1" ]
@@ -23,8 +23,10 @@ if [ -z "$1" ]
         # scan .
         echo "Не передан аргумент нового модуля"
     else
-        scan . $1
+        newName=${1@Q}
+        echo $newName
+        scan . $newName
         echo "Замена в файле ./go.mod..."
-        replaceInFile ./go.mod "templatego.test" $1
+        replaceInFile ./go.mod "templatego.test" $newName
         echo "./go.mod Закончено"
 fi
