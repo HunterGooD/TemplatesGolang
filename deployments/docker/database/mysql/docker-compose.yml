@@ -1,0 +1,31 @@
+version: "3.5"
+
+services:
+  mysql:
+    container_name: mariadb_container
+    image: mariadb/server:10.5
+    restart: always
+    # be sure to run `docker volume rm dev_dev_conf` when changing envs
+    environment:
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD:-root}"
+      MARIADB_DATABASE: "${MARIADB_DATABASE:-db}"
+      MARIADB_USER: "${MARIADB_USER:-admin}"
+      MARIADB_PASSWORD: "${MARIADB_PASSWORD:-admin}"
+    networks:
+      app_net:
+        ipv4_address: "192.168.1.10"
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - db_conf:/etc/mysql
+      
+networks:
+  app_net:
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+
+volumes:
+    db_data:
+    db_conf:
